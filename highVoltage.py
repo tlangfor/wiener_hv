@@ -7,7 +7,6 @@
 import os
 import subprocess
 from array import array
-import commands
 import time
 
 
@@ -18,18 +17,19 @@ class highVoltage:
         
         
     def walk(self, cmd):
-        sts = commands.getoutput("snmpwalk -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd).split('\n')
-#        sts[-1] = sts[-1][0:-1]     # To remove trailing line-ending
-        return sts
-    
+        sts = os.popen("snmpwalk -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd)
+        ret = sts.read().split('\n')
+        return ret
+
     def get(self, cmd):
-        sts = commands.getoutput("snmpget -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd).split('\n')
-        return sts
+        sts = os.popen("snmpget -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd)
+        ret = sts.read().split('\n')
+        return ret
     
     def set(self, cmd):
-        sts = commands.getoutput("snmpset -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd).split('\n')
-        return sts
-    
+        sts = os.popen("snmpset -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd)
+        ret = sts.read().split('\n')
+        return ret    
     
     
     def voltagesFromFile(self, fileName):
