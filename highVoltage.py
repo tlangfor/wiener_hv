@@ -1,9 +1,8 @@
-###
-Wiener High Voltage Control Program
-Thomas J Langford, Yale University
-thomas.langford@yale.edu
-###
-
+# ============================================
+# Wiener High Voltage Control Program
+# Thomas J Langford, Yale University
+# thomas.langford@yale.edu
+# ============================================
 
 import os
 import subprocess
