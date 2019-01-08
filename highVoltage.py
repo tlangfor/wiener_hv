@@ -148,7 +148,7 @@ class highVoltage:
         if fileName is None:
             fileName = "LastUsedHVSettings.txt"
         cA, vA = self.voltagesFromFile(fileName)
-        print "Loading voltages from file: " + fileName
+        print("Loading voltages from file: " + fileName)
         self.setVoltages(cA, vA)
 
     def shutDown(self):
@@ -160,11 +160,11 @@ class highVoltage:
 
         for i in range(100):
             sleep(2)
-            print "Ramping down..."
+            print("Ramping down...")
             voltage = float(self.checkVoltages(cA[-1])[1][0])
             if voltage < 10:
                 break
-        print "Voltages are down"
+        print("Voltages are down")
 
 
 if __name__ == "__main__":
@@ -179,4 +179,4 @@ if __name__ == "__main__":
         chA, vA = hv.checkVoltages()
         chA, cA = hv.checkCurrents()
         for i in range(len(chA)):
-            print "Ch:"+chA[i] +", "+ vA[i]+"V, " + cA[i]+"A, " + '\n'
+            print("Ch:"+chA[i] +", "+ vA[i]+"V, " + cA[i]+"A, " + '\n')
