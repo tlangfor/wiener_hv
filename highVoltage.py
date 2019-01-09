@@ -19,7 +19,7 @@ class highVoltage:
     def walk(self, cmd):
         sts = os.popen("snmpwalk -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd)
         ret = sts.read().split('\n')
-        return ret
+        return ret[0:-1]
 
     def get(self, cmd):
         sts = os.popen("snmpget -Oqs -v 2c -m +WIENER-CRATE-MIB -c guru " + self.ip + " " + cmd)
@@ -35,7 +35,7 @@ class highVoltage:
     def voltagesFromFile(self, fileName):
         
         with open(fileName,'r') as file:
-            data = file.read().split('\r')        # Switch to appropriate line-ending
+            data = file.read().split('\n')        # Switch to appropriate line-ending
             
         voltageArr = []
         channelArr = []
@@ -55,7 +55,7 @@ class highVoltage:
         
         with open(fileName,'w') as f:
             for row in sts:    
-                f.write(row + '\r')
+                f.write(row + '\n')
             
         
     def setVoltages(self, channelArr, voltageArr):
